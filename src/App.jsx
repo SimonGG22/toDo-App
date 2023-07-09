@@ -8,11 +8,13 @@ import { TodosLoading } from './componentes/TodosLoading';
 import { TodosError } from './componentes/TodosError';
 import { EmptyTodos } from './componentes/EmptyTodos';
 import { CreateTodoButton } from './componentes/CreateTodoButton';
+import { Modal } from './componentes/Modal';
+import { TodoForm } from './componentes/TodoForm';
 import { TodoContext, TodoProvider } from './context';
 
 
 function App() {
-  const { loading, error, searchedTodos } = useContext(TodoContext)
+  const { loading, error, searchedTodos, openModal } = useContext(TodoContext)
 
   return (
     <div className='container'>
@@ -27,6 +29,12 @@ function App() {
       {<TodoList />}
 
       <CreateTodoButton />
+
+      {openModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
     </div>
   )
 }

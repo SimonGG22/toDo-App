@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 const TodoContext = React.createContext();
@@ -55,6 +55,21 @@ function TodoProvider({ children }) {
     saveTodos(newTodos)
   }
 
+  // Add Todo
+  const addTodo = (text) => {
+    const newTodos = [...todos]
+    newTodos.push({
+      text,
+      completed: false
+    })
+    saveTodos(newTodos)
+  }
+
+
+  // Open/Close modal create todo
+  const [openModal, setOpenModal] = useState(false)
+
+
   const totalTodos = todos.length;
   
   return (
@@ -70,6 +85,9 @@ function TodoProvider({ children }) {
       searchedTodos,
       completeTodo,
       deleteTodo,
+      openModal,
+      setOpenModal,
+      addTodo
     }}>
       {children}
     </TodoContext.Provider>
