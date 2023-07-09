@@ -2,6 +2,8 @@
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import "./index.scss";
 import { TodoItem } from "../TodoItem";
+import { useContext } from "react";
+import { TodoContext } from "../../context";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -11,7 +13,9 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-function TodoList({todos, setTodos}) {
+function TodoList() {
+  const { completeTodo, deleteTodo, todos, saveTodos } = useContext(TodoContext)
+
   const onDragEnd = (result) => {
     const { source, destination } = result;
     if (!destination) {
@@ -25,31 +29,8 @@ function TodoList({todos, setTodos}) {
     }
 
     const updatedTodos = reorder(todos, source.index, destination.index);
-    setTodos(updatedTodos);
+    saveTodos(updatedTodos);
   };
-
-  const completeTodo = (text) => {
-    const newTodos = [...todos]
-    const todoIndex = newTodos.findIndex(
-      (todo) => todo.text == text
-    )
-    if (newTodos[todoIndex].completed == false) {
-      newTodos[todoIndex].completed = true
-      setTodos(newTodos)
-    } else {
-      newTodos[todoIndex].completed = false
-      setTodos(newTodos)
-    }
-  }
-
-  const deleteTodo = (text) => {
-    const newTodos = [...todos]
-    const todoIndex = newTodos.findIndex(
-      (todo) => todo.text == text
-    )
-    newTodos.splice(todoIndex, 1)
-    setTodos(newTodos)
-  }
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -61,7 +42,7 @@ function TodoList({todos, setTodos}) {
               ref={droppableProvided.innerRef}
               className="task-container"
             >
-              {todos.map((todo, index) => (
+              {todos?.map((todo, index) => (
                 <Draggable key={todo.text} draggableId={todo.text} index={index}>
                   {(draggableProvided) => (
                     <div
