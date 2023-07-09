@@ -1,0 +1,75 @@
+li {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 4fr 1fr;
+    align-items: center;
+    background-color: #171723;
+    border-radius: 10px;
+    p {
+        justify-self: center;
+        color: white;
+        font-size: 18px;
+    }
+}
+
+.check-circle {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.check-circle:hover {
+    color: green;
+}
+
+.check-circle--completed {
+    color: green;
+}
+
+.todo-text--completed {
+    text-decoration-line: line-through;
+    color: green;
+}
+
+.icons-container {
+    justify-self: end;
+    display: flex;
+    gap: 10px;
+    width: 80px;
+    height: auto;
+    svg {
+        width: 30px;
+        height: 30px;
+        color: white;
+        cursor: pointer;
+    }
+    .edit-icon:hover {
+        color: blue;
+    }
+    .delete-icon:hover {
+        color: red;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .check-circle {
+        width: 20px;
+        height: 20px;
+    }
+
+    .icons-container {
+        svg {
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    li {
+        p {
+            font-size: 10px;
+        }
+    }
+}
+

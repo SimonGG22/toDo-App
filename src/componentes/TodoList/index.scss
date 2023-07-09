@@ -1,0 +1,12 @@
+.todos-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+ul {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
