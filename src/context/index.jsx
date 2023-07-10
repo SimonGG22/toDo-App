@@ -57,6 +57,8 @@ function TodoProvider({ children }) {
   }
 
   // Add Todo
+  const [newTodoValue, setNewTodoValue] = useState('')
+  
   const addTodo = (text) => {
     const newTodos = [...todos]
     newTodos.push({
@@ -66,9 +68,28 @@ function TodoProvider({ children }) {
     saveTodos(newTodos)
   }
 
+  // Edit Todo 
+  const [index,setIndex] = useState(0)
+
+  const editTodo = (text) => {
+    setOpenEditModal(!openEditModal)
+    setNewTodoValue(text);
+    const indexValue = todos.findIndex((todo) => todo.text === text)
+    setIndex (indexValue);
+  }
+
+  const editTodoText = () => {
+    const newTodos = [...todos];
+    const updatedTodo = { ...newTodos[index], text: newTodoValue , completed: false }
+    newTodos.splice(index, 1, updatedTodo);
+    saveTodos(newTodos)
+  }
 
   // Open/Close modal create todo
   const [openModal, setOpenModal] = useState(false)
+
+  // Open/Close modal Edit todo
+  const [openEditModal, setOpenEditModal] = useState(false)
 
 
   const totalTodos = todos.length;
@@ -86,9 +107,15 @@ function TodoProvider({ children }) {
       searchedTodos,
       completeTodo,
       deleteTodo,
+      openEditModal,
+      setOpenEditModal,
       openModal,
       setOpenModal,
-      addTodo
+      addTodo,
+      newTodoValue,
+      setNewTodoValue,
+      editTodo,
+      editTodoText,
     }}>
       {children}
     </TodoContext.Provider>

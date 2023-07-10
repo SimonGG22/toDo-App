@@ -3,13 +3,13 @@ import { useContext } from 'react'
 import './index.scss'
 import { TodoContext } from '../../context'
 
-function TodoForm () {
-    const { setOpenModal, openModal, addTodo, newTodoValue, setNewTodoValue } = useContext(TodoContext)
+function EditTodoForm () {
+    const { setOpenEditModal, openEditModal, newTodoValue, setNewTodoValue, editTodoText} = useContext(TodoContext)
     
     const onSubmit = (event) => {
         event.preventDefault()
-        addTodo(newTodoValue)
-        setOpenModal(!openModal)
+        editTodoText(newTodoValue)
+        setOpenEditModal(!openEditModal)
     }
 
     const onChange = (event) => {
@@ -17,7 +17,7 @@ function TodoForm () {
     }
 
     const onCancel = () => {
-        setOpenModal(!openModal)
+        setOpenEditModal(!openEditModal)
     }
 
     return (
@@ -26,10 +26,10 @@ function TodoForm () {
                 <textarea value={newTodoValue} onChange={onChange}/>
                 <div className='todoForm-buttonContainer'>
                     <button type='button' onClick={onCancel} className='todoForm-button cancel'>Cancelar</button>
-                    <button type='submit' className='todoForm-button add'>Agregar</button>
+                    <button type='submit' className='todoForm-button add'>Editar</button>
                 </div>
             </form>
     )
 }
 
-export { TodoForm }
+export { EditTodoForm }

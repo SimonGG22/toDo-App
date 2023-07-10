@@ -11,10 +11,11 @@ import { CreateTodoButton } from './componentes/CreateTodoButton';
 import { Modal } from './componentes/Modal';
 import { TodoForm } from './componentes/TodoForm';
 import { TodoContext, TodoProvider } from './context';
+import { EditTodoForm } from './componentes/EditTodoForm';
 
 
 function App() {
-  const { loading, error, searchedTodos, openModal } = useContext(TodoContext)
+  const { loading, error, searchedTodos, openModal, openEditModal } = useContext(TodoContext)
 
   return (
     <div className='container'>
@@ -33,6 +34,12 @@ function App() {
       {openModal && (
         <Modal>
           <TodoForm />
+        </Modal>
+      )}
+
+      {openEditModal && (
+        <Modal>
+          <EditTodoForm />
         </Modal>
       )}
     </div>
