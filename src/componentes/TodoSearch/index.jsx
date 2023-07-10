@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useContext } from 'react'
 
 import './index.scss'
+import { TodoContext } from '../../context'
 
-function TodoSearch ({searchValue, setSearchValue}) {
+function TodoSearch () {
+    const { searchValue, setSearchValue } = useContext(TodoContext)
 
     return (
         <div className='search-container'>  

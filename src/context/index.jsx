@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import { useState, createContext } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-const TodoContext = React.createContext();
+const TodoContext = createContext();
 
 function TodoProvider({ children }) {
 
@@ -15,7 +15,7 @@ function TodoProvider({ children }) {
   } = useLocalStorage('TODOS', [])
 
   // Search ToDos input  
-  const [searchValue, setSearchValue] = React.useState('')
+  const [searchValue, setSearchValue] = useState('')
 
   const searchedTodos = todos.filter(
     (todo) => {
@@ -24,6 +24,7 @@ function TodoProvider({ children }) {
       return todoText.includes(searchText);
     }
   );
+
 
   // Completed Todo
   const completedTodos = todos.filter(

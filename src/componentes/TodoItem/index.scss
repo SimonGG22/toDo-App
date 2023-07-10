@@ -37,7 +37,7 @@ li {
     justify-self: end;
     display: flex;
     gap: 10px;
-    width: 80px;
+    padding-right: 10px;
     height: auto;
     svg {
         width: 30px;
@@ -60,6 +60,7 @@ li {
     }
 
     .icons-container {
+        justify-content: end;
         svg {
             width: 15px;
             height: 15px;

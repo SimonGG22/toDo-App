@@ -14,7 +14,7 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 function TodoList() {
-  const { completeTodo, deleteTodo, todos, saveTodos } = useContext(TodoContext)
+  const { completeTodo, deleteTodo, todos, saveTodos, searchedTodos } = useContext(TodoContext)
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
@@ -42,7 +42,7 @@ function TodoList() {
               ref={droppableProvided.innerRef}
               className="task-container"
             >
-              {todos?.map((todo, index) => (
+              {searchedTodos?.map((todo, index) => (
                 <Draggable key={todo.text} draggableId={todo.text} index={index}>
                   {(draggableProvided) => (
                     <div
