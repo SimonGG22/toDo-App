@@ -17,7 +17,7 @@ function TodoProvider({ children }) {
   // Search ToDos input  
   const [searchValue, setSearchValue] = useState('')
 
-  const searchedTodos = todos.filter(
+  const searchedTodos = todos?.filter(
     (todo) => {
       const todoText = todo.text.toLowerCase();
       const searchText = searchValue.toLowerCase();
@@ -27,7 +27,7 @@ function TodoProvider({ children }) {
 
 
   // Completed Todo
-  const completedTodos = todos.filter(
+  const completedTodos = todos?.filter(
     todo => !!todo.completed
   ).length;
   
@@ -74,7 +74,7 @@ function TodoProvider({ children }) {
   const editTodo = (text) => {
     setOpenEditModal(!openEditModal)
     setNewTodoValue(text);
-    const indexValue = todos.findIndex((todo) => todo.text === text)
+    const indexValue = todos?.findIndex((todo) => todo.text === text)
     setIndex (indexValue);
   }
 
@@ -92,7 +92,7 @@ function TodoProvider({ children }) {
   const [openEditModal, setOpenEditModal] = useState(false)
 
 
-  const totalTodos = todos.length;
+  const totalTodos = todos?.length;
   
   return (
     <TodoContext.Provider value={{

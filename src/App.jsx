@@ -12,10 +12,11 @@ import { Modal } from './componentes/Modal';
 import { TodoForm } from './componentes/TodoForm';
 import { TodoContext, TodoProvider } from './context';
 import { EditTodoForm } from './componentes/EditTodoForm';
+import { EmptySearch } from './componentes/EmptySearch';
 
 
 function App() {
-  const { loading, error, searchedTodos, openModal, openEditModal } = useContext(TodoContext)
+  const { loading, error, searchedTodos, openModal, openEditModal, todos } = useContext(TodoContext)
 
   return (
     <div className='container'>
@@ -25,7 +26,9 @@ function App() {
 
       {loading && <><TodosLoading /> <TodosLoading /> <TodosLoading /></>}
       {error && <TodosError />}
-      {(!loading && searchedTodos.length === 0) && <EmptyTodos />}
+      
+      {(!loading && todos?.length === 0 && searchedTodos?.length === 0) && <EmptyTodos />}
+    {(searchedTodos?.length === 0 && todos?.length !== 0) && <EmptySearch />}
 
       {<TodoList />}
 
