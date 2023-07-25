@@ -17,6 +17,13 @@ h1 {
         width: 80%;
         height: 22px;
     }
+    
+    .progress-bar::-moz-progress-bar {
+        background-color: #FFD717;
+        border-radius: 7px;
+        box-shadow: 1px 0px 10px 2px rgba(255, 215, 23, 1);
+    }
+
     .progress-bar::-webkit-progress-bar {
         background-color: whitesmoke;
         border-radius: 7px;
